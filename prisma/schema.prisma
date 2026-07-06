@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum InterviewStatus {
+  pending
+  fetching_repos
+  ready
+  in_progress
+  completed
+}
+
+model Interview {
+  id        String          @id @default(cuid())
+  githubUrl String
+  githubData Json?
+  status    InterviewStatus @default(pending)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  questions Question[]
+  evaluation Evaluation?
+}
+
+model Question {
+  id          String   @id @default(cuid())
+  interviewId String
+  interview   Interview @relation(fields: [interviewId], references: [id])
+  question    String
+  answer      String?
+  feedback    String?
+  createdAt   DateTime @default(now())
+}
+
+model Evaluation {
+  id           String    @id @default(cuid())
+  interviewId  String    @unique
+  interview    Interview @relation(fields: [interviewId], references: [id])
+  overallScore Int?
+  summary      String?
+  strengths    Json?
+  weaknesses   Json?
+  createdAt    DateTime  @default(now())
+}

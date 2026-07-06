@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +17,7 @@ export function Form() {
 
     async function onSubmit() {
         if (!github.trim()) {
-            toast("Please provide a valid GitHub URL");
+            toast.error("Please provide a valid GitHub URL");
             return;
         }
 
@@ -25,8 +27,8 @@ export function Form() {
                 github: github.trim(),
             });
             navigate.push(`/interview/${response.data.id}`);
-        } catch (e) {
-            toast("Something went wrong starting your interview. Please try again.");
+        } catch {
+            toast.error("Something went wrong starting your interview. Please try again.");
             setLoading(false);
         }
     }
@@ -44,7 +46,7 @@ export function Form() {
                 </h1>
                 <p className="mt-4 max-w-md text-balance text-base text-muted-foreground">
                     Drop your GitHub profile and start a live, voice-driven interview tailored to
-                    your work. Get instant feedback when you're done.
+                    your work. Get instant feedback when you&apos;re done.
                 </p>
 
                 <div className="mt-10 w-full">
@@ -80,7 +82,7 @@ export function Form() {
                         </Button>
                     </div>
                     <p className="mt-3 text-xs text-muted-foreground">
-                        We'll ask for microphone access once your interview begins.
+                        We&apos;ll ask for microphone access once your interview begins.
                     </p>
                 </div>
             </div>
