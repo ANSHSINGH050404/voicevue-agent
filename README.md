@@ -1,25 +1,24 @@
-# voicevue-agent
+# VoiceVue Agent
 
-AI interview agent app with Next.js, Prisma, and voice-driven interview flows.
+**AI interview agent** — Next.js app with Prisma/Postgres for structured, voice-driven mock interview flows.
 
 ## Stack
 
-Next.js, Prisma, TypeScript
+- Next.js + TypeScript + Tailwind  
+- Prisma + PostgreSQL (`@prisma/adapter-pg`)  
+- Motion animations, shadcn UI, Sonner toasts  
 
 ## Getting started
 
 ```bash
 git clone https://github.com/ANSHSINGH050404/voicevue-agent.git
 cd voicevue-agent
-bun install
-bun run dev   # or: bun run start
+npm install   # or bun install
+cp .env.example .env  # if present — set DATABASE_URL
+npx prisma migrate dev
+npm run dev
 ```
 
-## Repository
+## Author
 
-- **GitHub:** https://github.com/ANSHSINGH050404/voicevue-agent
-- **Author:** [ANSHSINGH050404](https://github.com/ANSHSINGH050404)
-
-## License
-
-See repository for license details (or add an MIT license if this is open source).
+[ANSHSINGH050404](https://github.com/ANSHSINGH050404)
